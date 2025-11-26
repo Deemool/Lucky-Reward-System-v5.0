@@ -1,2 +1,6 @@
-// This service is intentionally left empty as the application now runs in offline mode 
-// and does not require external API calls for text generation.
+// This service is no longer used in the local version of the application.
+// Logic has been moved to static flavor text in constants.ts.
+
+export const generateRewardComment = async (): Promise<string> => {
+  return "";
+};
