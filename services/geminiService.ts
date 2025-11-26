@@ -1,6 +1,5 @@
-// This service is no longer used in the local version of the application.
-// Logic has been moved to static flavor text in constants.ts.
-
-export const generateRewardComment = async (): Promise<string> => {
+// This service has been disabled as per user request to remove API functionality.
+// Keeping file as placeholder to ensure no import resolution errors occur during transition.
+export const generateRewardComment = async (title: string, description: string): Promise<string> => {
   return "";
 };

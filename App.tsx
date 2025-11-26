@@ -92,15 +92,15 @@ const App: React.FC = () => {
         selectedItem = tier.items[itemIndex];
     }
 
-    // 4. Artificial Delay for suspense
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // 4. Delay for animation effect (Optimized: Reduced to 1000ms)
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     const newResult: DrawResult = {
         roll,
         tier,
         selectedItem,
         timestamp: Date.now(),
-        comment: selectedItem.flavorText // Use pre-defined flavor text
+        comment: selectedItem.flavorText // Use static flavor text from constants
     };
 
     // 5. Show Result
