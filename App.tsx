@@ -137,12 +137,15 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-purple-500/30">
         {/* Header */}
-        <header className="p-6 flex justify-between items-center border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-20">
-            <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-900/20">
-                    <Sparkles className="w-5 h-5 text-white" />
+        <header className="px-4 py-3 md:p-6 flex justify-between items-center border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-20">
+            <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-900/20 ring-1 ring-white/5">
+                    <Sparkles className="w-4 h-4 text-white" />
                 </div>
-                <h1 className="font-bold text-lg md:text-xl tracking-tight">RewardSystem<span className="text-slate-600">v5.0</span></h1>
+                <div className="flex items-baseline gap-2">
+                     <h1 className="font-extrabold text-lg md:text-xl tracking-tight text-slate-100">RewardSystem</h1>
+                     <span className="text-xs font-bold text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800/50">v5.0</span>
+                </div>
             </div>
             <button 
                 onClick={() => setShowHistory(!showHistory)}
@@ -157,24 +160,24 @@ const App: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative">
+        <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative overflow-x-hidden">
             
             {/* Ambient Background Lights */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-600/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-purple-600/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none"></div>
 
             {/* Introduction / Draw Button State */}
             {!result && !isRolling && (
-                <div className="text-center max-w-lg mx-auto mb-12 animate-in fade-in zoom-in duration-500">
-                    <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-500">
+                <div className="text-center max-w-lg mx-auto mb-4 md:mb-6 animate-in fade-in zoom-in duration-500 px-4">
+                    <h2 className="text-3xl md:text-5xl font-extrabold mb-3 md:mb-5 bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-500">
                         完成任务了吗？
                     </h2>
-                    <p className="text-slate-400 mb-8 text-lg">
+                    <p className="text-slate-400 mb-6 text-base md:text-lg">
                         每一次努力都值得被奖赏。<br/>点击下方按钮，抽取属于你的随机奖励。
                     </p>
                     <button
                         onClick={handleDraw}
-                        className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-offset-slate-900 hover:shadow-[0_0_40px_-10px_rgba(124,58,237,0.5)] active:scale-95 overflow-hidden"
+                        className="group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-offset-slate-900 hover:shadow-[0_0_40px_-10px_rgba(124,58,237,0.5)] active:scale-95 overflow-hidden"
                     >
                          <span className="relative z-10 flex items-center gap-2">
                             <Sparkles className="w-5 h-5" />
@@ -191,9 +194,9 @@ const App: React.FC = () => {
             
             {/* Rules / Pool Section */}
             {!result && !isRolling && (
-                <div className="mt-8 flex flex-col items-center w-full">
-                    <div className="flex items-center gap-2 text-slate-500 text-sm uppercase tracking-widest font-semibold mb-4">
-                        <Info className="w-4 h-4" /> 奖池概览
+                <div className="mt-2 flex flex-col items-center w-full">
+                    <div className="flex items-center gap-2 text-slate-500 text-xs md:text-sm uppercase tracking-widest font-semibold mb-3">
+                        <Info className="w-3 h-3 md:w-4 md:h-4" /> 奖池概览
                     </div>
                     <PrizePool />
                 </div>
@@ -203,10 +206,10 @@ const App: React.FC = () => {
         {/* History Sidebar / Modal */}
         {showHistory && (
             <div className="fixed inset-0 z-50 flex justify-end">
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowHistory(false)}></div>
-                <div className="relative w-full max-w-sm bg-slate-900 border-l border-slate-800 h-full p-6 overflow-y-auto shadow-2xl">
-                    <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-xl font-bold">历史记录</h3>
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setShowHistory(false)}></div>
+                <div className="relative w-full max-w-sm bg-slate-900 border-l border-slate-800 h-full flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
+                    <div className="p-4 md:p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/95 backdrop-blur z-10">
+                        <h3 className="text-lg md:text-xl font-bold text-slate-100">历史记录</h3>
                         <div className="flex items-center gap-2">
                             {history.length > 0 && (
                                 <button
@@ -226,29 +229,32 @@ const App: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="space-y-4">
+                    <div className="p-4 md:p-6 overflow-y-auto flex-1 space-y-3 md:space-y-4">
                         {history.length === 0 ? (
-                            <p className="text-slate-500 text-center py-10">暂无记录</p>
+                            <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+                                <History className="w-12 h-12 mb-3 opacity-20" />
+                                <p className="text-sm">暂无记录</p>
+                            </div>
                         ) : (
                             history.map(item => (
-                                <div key={item.id} className={`group relative p-4 rounded-lg border bg-slate-950 ${item.tier.borderColor} border-opacity-30`}>
+                                <div key={item.id} className={`group relative p-3 md:p-4 rounded-lg border bg-slate-950 ${item.tier.borderColor} border-opacity-30 hover:border-opacity-50 transition-colors`}>
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             deleteHistoryItem(item.id);
                                         }}
-                                        className="absolute top-2 right-2 p-1 text-slate-600 hover:text-red-400 hover:bg-slate-900 rounded transition-colors z-10"
+                                        className="absolute top-2 right-2 p-1.5 text-slate-600 hover:text-red-400 hover:bg-slate-900 rounded transition-colors z-10 opacity-0 group-hover:opacity-100 focus:opacity-100"
                                         title="删除此记录"
                                     >
                                         <X className="w-3.5 h-3.5" />
                                     </button>
                                     
-                                    <div className="flex justify-between items-center mb-1 pr-6">
-                                        <span className={`text-xs font-bold ${item.tier.color}`}>{item.tier.name}</span>
-                                        <span className="text-xs font-mono text-slate-500">#{item.roll}</span>
+                                    <div className="flex justify-between items-center mb-1.5 pr-6">
+                                        <span className={`text-[10px] md:text-xs font-bold ${item.tier.color}`}>{item.tier.name}</span>
+                                        <span className="text-[10px] md:text-xs font-mono text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded">#{item.roll}</span>
                                     </div>
-                                    <p className="font-semibold text-sm pr-4">{item.selectedItem.title}</p>
-                                    <p className="text-xs text-slate-500 mt-1">{new Date(item.timestamp).toLocaleTimeString()}</p>
+                                    <p className="font-semibold text-sm pr-4 text-slate-200 line-clamp-2">{item.selectedItem.title}</p>
+                                    <p className="text-xs text-slate-500 mt-1.5">{new Date(item.timestamp).toLocaleTimeString()}</p>
                                 </div>
                             ))
                         )}

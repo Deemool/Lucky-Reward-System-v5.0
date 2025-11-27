@@ -5,17 +5,17 @@ import { motion } from 'framer-motion';
 
 const PrizePool: React.FC = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+    <div className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 px-0 md:px-4">
       {PRIZE_POOL.map((tier, idx) => (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: idx * 0.1 }}
           key={tier.name}
-          className={`relative p-5 rounded-xl border bg-slate-900/40 backdrop-blur-sm ${tier.borderColor} border-opacity-30 hover:border-opacity-60 transition-colors`}
+          className={`relative p-4 md:p-5 rounded-xl border bg-slate-900/40 backdrop-blur-sm ${tier.borderColor} border-opacity-30 hover:border-opacity-60 transition-colors`}
         >
-          <div className="flex justify-between items-center mb-4">
-            <h3 className={`font-bold text-lg ${tier.color}`}>{tier.name}</h3>
+          <div className="flex justify-between items-center mb-3 md:mb-4">
+            <h3 className={`font-bold text-base md:text-lg ${tier.color}`}>{tier.name}</h3>
             <span className="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-slate-400">
               {tier.range[0]}-{tier.range[1]} ({tier.probability})
             </span>
